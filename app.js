@@ -18,6 +18,8 @@ app.get("/graffiti/:tagId", mongoose.getTag);
 
 app.post("/graffiti", mongoose.createTag);
 
+app.patch("/graffiti/:tagId", mongoose.updateTag);
+
 app.delete("/graffiti/:tagId", mongoose.deleteTag);
 
 app.listen(port);

@@ -33,6 +33,18 @@ const createTag = async (req, res, next) => {
   res.json(result);
 };
 
+const updateTag = async (req, res, next) => {
+  const updatedTag = await Tag.findByIdAndUpdate(
+    req.params.tagId,
+    {
+      tag: req.body.tag,
+    },
+    { new: true }
+  );
+
+  res.json(updatedTag);
+};
+
 const deleteTag = async (req, res, next) => {
   const tag = await Tag.findByIdAndDelete(req.params.tagId);
 
@@ -41,5 +53,6 @@ const deleteTag = async (req, res, next) => {
 
 exports.getTag = getTag;
 exports.getTags = getTags;
+exports.updateTag = updateTag;
 exports.createTag = createTag;
 exports.deleteTag = deleteTag;
