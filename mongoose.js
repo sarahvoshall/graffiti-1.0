@@ -33,6 +33,13 @@ const createTag = async (req, res, next) => {
   res.json(result);
 };
 
-exports.getTag = getTag
+const deleteTag = async (req, res, next) => {
+  const tag = await Tag.findByIdAndDelete(req.params.tagId);
+
+  res.json({ message: "Tag deleted." });
+};
+
+exports.getTag = getTag;
 exports.getTags = getTags;
 exports.createTag = createTag;
+exports.deleteTag = deleteTag;
