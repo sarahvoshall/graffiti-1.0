@@ -13,6 +13,7 @@ app.get("/", async (req, res) => {
 });
 
 app.get("/graffiti", mongoose.getTags);
+app.get("/graffiti/:tagId", mongoose.getTag);
 
 app.post("/graffiti", mongoose.createTag);
 

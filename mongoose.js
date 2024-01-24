@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const Tag = require("./models/tag"); 
+const Tag = require("./models/tag");
 
 const url =
   "mongodb+srv://sarah:hello@cluster0.z9kd34g.mongodb.net/?retryWrites=true&w=majority";
@@ -17,15 +17,22 @@ const getTags = async (req, res, next) => {
   res.json(tags);
 };
 
-const createTag = async (req, res, next) => {
-    const createdTag = new Tag({
-      tag: req.body.tag,
-    });
-  
-    const result = await createdTag.save();
-  
-    res.json(result);
-  };
+const getTag = async (req, res, next) => {
+  const tag = await Tag.findById(req.params.tagId).exec();
 
+  res.json(tag);
+};
+
+const createTag = async (req, res, next) => {
+  const createdTag = new Tag({
+    tag: req.body.tag,
+  });
+
+  const result = await createdTag.save();
+
+  res.json(result);
+};
+
+exports.getTag = getTag
 exports.getTags = getTags;
 exports.createTag = createTag;
